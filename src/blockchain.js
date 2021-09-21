@@ -126,7 +126,7 @@ class Blockchain {
             let currentTime = parseInt(new Date().getTime().toString().slice(0, -3))
             let elapsedTime = 5 * 60
      
-            // if (currentTime - messageTime < elapsedTime) {
+            if (currentTime - messageTime < elapsedTime) {
                 let verifiedResult = bitcoinMessage.verify(message, address, signature)
                 if (verifiedResult) {
                     let newBlock = new BlockClass.Block({
@@ -138,9 +138,9 @@ class Blockchain {
                 } else {
                     reject('Failed to verify bitcoin Message!')
                 }
-            // } else {
-            //     reject('Time elapsed is more than 5 minutes!')
-            // }
+            } else {
+                reject('Time elapsed is more than 5 minutes!')
+            }
         });
     }
 
